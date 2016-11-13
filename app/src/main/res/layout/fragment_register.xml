@@ -1,0 +1,91 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+tools:context="com.example.shogun.znk.fragments.RegisterFragment">
+
+<TextView
+    android:id="@+id/tvLoging"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Rejestracja"
+    android:textSize="40sp"
+    android:textColor="@color/colorTulRed"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    android:layout_marginTop="150dp"/>
+
+<EditText
+    android:id="@+id/etIndexNo"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:hint="login"
+    android:textSize="25sp"
+    android:inputType="text"
+    android:textAlignment="center"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/tvLoging"
+    app:layout_constraintRight_toRightOf="parent"
+    android:layout_marginRight="@dimen/activity_horizontal_margin"
+    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+    android:layout_marginTop="25dp"
+    android:background="@drawable/edit_text_style"
+    android:layout_marginStart="@dimen/activity_horizontal_margin"
+    android:layout_marginEnd="@dimen/activity_horizontal_margin" />
+
+<EditText
+    android:id="@+id/etMailForm"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:hint="mail"
+    android:textSize="25sp"
+    android:inputType="textEmailAddress"
+    android:textAlignment="center"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/etIndexNo"
+    app:layout_constraintRight_toRightOf="parent"
+    android:layout_marginRight="@dimen/activity_horizontal_margin"
+    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+    android:layout_marginTop="25dp"
+    android:background="@drawable/edit_text_style"
+    android:layout_marginStart="@dimen/activity_horizontal_margin"
+    android:layout_marginEnd="@dimen/activity_horizontal_margin" />
+
+<EditText
+    android:id="@+id/etPassword"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:hint="hasło"
+    android:textSize="25sp"
+    android:textAlignment="center"
+    android:inputType="textPassword"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/etMailForm"
+    android:layout_marginTop="25dp"
+    android:layout_marginRight="@dimen/activity_horizontal_margin"
+    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+    android:background="@drawable/edit_text_style"
+    android:layout_marginStart="@dimen/activity_horizontal_margin"
+    android:layout_marginEnd="@dimen/activity_horizontal_margin" />
+
+<Button
+    android:id="@+id/btnOK"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:text="Wyslij"
+
+    android:background="@color/colorTulRed"
+    android:textColor="@android:color/white"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/etPassword"
+    android:layout_marginRight="@dimen/activity_horizontal_margin"
+    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+    android:layout_marginTop="30dp"
+    android:layout_marginStart="@dimen/activity_horizontal_margin"
+    android:layout_marginEnd="@dimen/activity_horizontal_margin" />
+
+</android.support.constraint.ConstraintLayout>
