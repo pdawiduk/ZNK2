@@ -3,6 +3,8 @@ package com.example.shogun.znk;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,10 +15,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.shogun.znk.fragments.MainFragment;
+import com.example.shogun.znk.fragments.TeacherWelcomeFragment;
+
 import butterknife.ButterKnife;
 
 public class TeacherActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private FragmentTransaction fragmentTransaction;
+    private FragmentManager switchFragmentTransaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +42,9 @@ public class TeacherActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        switchFragmentTransaction = getSupportFragmentManager();
+        fragmentTransaction.replace(R.id.teacher_fragment_container, TeacherWelcomeFragment.newInstance()).commit();
         ButterKnife.bind(this);
     }
 
