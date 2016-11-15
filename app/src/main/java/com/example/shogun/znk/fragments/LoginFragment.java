@@ -14,6 +14,14 @@ import android.widget.Toast;
 import com.example.shogun.znk.R;
 import com.example.shogun.znk.StudentActivity;
 import com.example.shogun.znk.TeacherActivity;
+import com.example.shogun.znk.models.User;
+import com.example.shogun.znk.requests.GetAccount;
+import com.example.shogun.znk.requests.LoginUser;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.concurrent.ExecutionException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -68,18 +76,19 @@ public class LoginFragment extends Fragment {
         etMail.setText("");
         etPassword.setText("");
 
-        if (mail.contains("@edu")) {
+        LoginUser loginUser = new LoginUser(getContext());
+        String token = loginUser.signUpUser(mail,password,String.valueOf(false));
 
-            Intent intent = new Intent(getActivity(), StudentActivity.class);
-            startActivity(intent);
-        } else if (mail.contains("@p.lodz.pl")) {
+        GetAccount getAccount = new GetAccount();
+        User user = getAccount.getUser(token);
+
+        if((user.getAuthorities().contains("ROLE_ADMIN") && user.getAuthorities().contains("ROLE_USER")) || user.getAuthorities().contains("ROLE_TEACHER")) {
             Intent intent = new Intent(getActivity(), TeacherActivity.class);
             startActivity(intent);
-        } else {
-            Toast.makeText(getContext(), "nie poprawny email", Toast.LENGTH_SHORT).show();
+        } else if (user.getAuthorities().contains("ROLE_USER") || user.getAuthorities().contains("ROLE_STUDENT"))  {
+            Intent intent = new Intent(getActivity(), StudentActivity.class);
+            startActivity(intent);
         }
-
-
     }
 
 }
