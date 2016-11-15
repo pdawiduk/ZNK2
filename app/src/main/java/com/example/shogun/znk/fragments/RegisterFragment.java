@@ -6,20 +6,33 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.shogun.znk.R;
+import com.example.shogun.znk.requests.RegisterUser;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class RegisterFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    @BindView(R.id.etIndexNo)
+    EditText etIndexno;
+
+    @BindView(R.id.etMailForm)
+    EditText etMail;
+
+    @BindView(R.id.etPassword)
+    EditText etPassword;
+
+    @BindView(R.id.btnOK)
+    Button btnConfirm;
+
+    String password;
+    String mail;
+    String indexNo;
 
 
     public RegisterFragment() {
@@ -46,6 +59,17 @@ public class RegisterFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_register, container, false);
         ButterKnife.bind(this,view);
         return view;
+    }
+
+    @OnClick(R.id.btnOK)
+    void register() {
+
+        mail = etMail.getText().toString();
+        password = etPassword.getText().toString();
+        indexNo = etIndexno.getText().toString();
+
+        RegisterUser registerUser = new RegisterUser(getContext());
+        registerUser.registerUser(indexNo,password,mail);
     }
 
 }
