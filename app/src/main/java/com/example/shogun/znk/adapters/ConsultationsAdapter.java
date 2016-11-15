@@ -10,6 +10,9 @@ import android.widget.Toast;
 
 
 import com.example.shogun.znk.R;
+import com.example.shogun.znk.StudentActivity;
+import com.example.shogun.znk.fragments.TeacherProfileFragment;
+import com.example.shogun.znk.models.Consultation;
 
 import java.util.List;
 
@@ -19,10 +22,10 @@ import java.util.List;
 
 public class ConsultationsAdapter extends RecyclerView.Adapter<ConsultationsAdapter.ConsultationHolder> {
 
-    List<String> dateLists;
+    List<Consultation> dateLists;
     Context context;
 
-    public ConsultationsAdapter(Context context, List<String> dateLists) {
+    public ConsultationsAdapter(Context context, List<Consultation> dateLists) {
         this.dateLists = dateLists;
         this.context = context;
     }
@@ -43,7 +46,7 @@ public class ConsultationsAdapter extends RecyclerView.Adapter<ConsultationsAdap
     @Override
     public void onBindViewHolder(ConsultationHolder holder, int position) {
 
-       holder.textView.setText( dateLists.get(position));
+       holder.textView.setText( dateLists.get(position).getDate());
     }
 
     class ConsultationHolder extends RecyclerView.ViewHolder{
@@ -55,7 +58,7 @@ public class ConsultationsAdapter extends RecyclerView.Adapter<ConsultationsAdap
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(context, "clicket at position" + getLayoutPosition(), Toast.LENGTH_SHORT).show();
+
                 }
             });
         }

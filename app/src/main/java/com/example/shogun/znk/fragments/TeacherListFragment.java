@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import com.example.shogun.znk.R;
 import com.example.shogun.znk.StudentActivity;
 import com.example.shogun.znk.adapters.ConsultationsAdapter;
+import com.example.shogun.znk.adapters.StudentConsutationsAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +31,7 @@ public class TeacherListFragment extends Fragment {
     @BindView(R.id.rvTeachersList)
     RecyclerView rvTeacherList;
     List<String> teachers = new ArrayList<>();
-    ConsultationsAdapter adapter ;
+    StudentConsutationsAdapter adapter ;
     public TeacherListFragment() {
         // Required empty public constructor
     }
@@ -91,8 +92,7 @@ public class TeacherListFragment extends Fragment {
         teachers.add("Kerry king");
         teachers.add("Markras");
         teachers.add("prof. Dominik Sankowski");
-
-        adapter = new ConsultationsAdapter(getContext(),teachers);
+        adapter = new StudentConsutationsAdapter(getContext(),teachers);
         RecyclerView.LayoutManager llm = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
         rvTeacherList.setLayoutManager(llm);
         rvTeacherList.setAdapter(adapter);

@@ -6,10 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import com.example.shogun.znk.R;
+import com.example.shogun.znk.StudentActivity;
+import com.example.shogun.znk.fragments.TeacherProfileFragment;
 
 import java.util.List;
 
@@ -19,11 +20,11 @@ import java.util.List;
 
 public class StudentConsutationsAdapter extends RecyclerView.Adapter<StudentConsutationsAdapter.ConsultationHolder> {
 
-    List<String> studentsList;
+    List<String> teacherList;
     Context context;
 
-    public StudentConsutationsAdapter(Context context, List<String> studentsList) {
-        this.studentsList = studentsList;
+    public StudentConsutationsAdapter(Context context, List<String> teacherList) {
+        this.teacherList = teacherList;
         this.context = context;
     }
 
@@ -38,13 +39,13 @@ public class StudentConsutationsAdapter extends RecyclerView.Adapter<StudentCons
 
     @Override
     public int getItemCount() {
-        return studentsList.size();
+        return teacherList.size();
     }
 
     @Override
     public void onBindViewHolder(ConsultationHolder holder, int position) {
 
-       holder.textView.setText( studentsList.get(position));
+       holder.textView.setText( teacherList.get(position));
     }
 
     class ConsultationHolder extends RecyclerView.ViewHolder{
@@ -56,7 +57,8 @@ public class StudentConsutationsAdapter extends RecyclerView.Adapter<StudentCons
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(context, "clicket at position" + getLayoutPosition(), Toast.LENGTH_SHORT).show();
+
+                    StudentActivity.switchContent(TeacherProfileFragment.newInstance(teacherList.get(getLayoutPosition())));
                 }
             });
         }

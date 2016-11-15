@@ -100,7 +100,7 @@ public class StudentActivity extends AppCompatActivity
         return true;
     }
 
-     static void switchContent(Fragment fragment){
+     public static void switchContent(Fragment fragment){
         switchFragmentTransaction.beginTransaction().addToBackStack(null).replace(R.id.student_fragment_container,fragment).commit();
     }
 }
