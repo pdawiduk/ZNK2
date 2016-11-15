@@ -31,4 +31,12 @@ public class FakeDatabase {
 
 
     }
+
+    public List<Consultation> getConsultations() {
+        return consultations;
+    }
+
+    public List<String> getSignnedStudents() {
+        return signnedStudents;
+    }
 }

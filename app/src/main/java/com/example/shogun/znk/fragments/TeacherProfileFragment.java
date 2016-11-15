@@ -12,6 +12,7 @@ import com.example.shogun.znk.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 public class TeacherProfileFragment extends Fragment {
@@ -19,12 +20,10 @@ public class TeacherProfileFragment extends Fragment {
     private  String name;
     @BindView(R.id.tvNameSurname)
     TextView tvNameSurname;
+
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
 
     public TeacherProfileFragment() {
@@ -57,4 +56,12 @@ public class TeacherProfileFragment extends Fragment {
         super.onResume();
         tvNameSurname.setText(name);
     }
+
+    @OnClick(R.id.btnSignCloseConsultation)
+    void signOnCloseConsultation(){
+
+    }
+
+    @OnClick(R.id.btnOtherConsultations)
+    void showConsultations(){}
 }

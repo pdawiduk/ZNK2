@@ -3,6 +3,7 @@ package com.example.shogun.znk;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
@@ -16,6 +17,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.shogun.znk.fragments.MainFragment;
+import com.example.shogun.znk.fragments.TeacherConsultationsFragment;
+import com.example.shogun.znk.fragments.TeacherProfileFragment;
 import com.example.shogun.znk.fragments.TeacherWelcomeFragment;
 
 import butterknife.ButterKnife;
@@ -24,7 +27,7 @@ public class TeacherActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private FragmentTransaction fragmentTransaction;
-    private FragmentManager switchFragmentTransaction;
+    private static FragmentManager switchFragmentTransaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +90,7 @@ public class TeacherActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
+            switchContent(TeacherConsultationsFragment.newInstance());
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
@@ -103,5 +106,9 @@ public class TeacherActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public static void switchContent(Fragment fragment){
+        switchFragmentTransaction.beginTransaction().addToBackStack(null).replace(R.id.teacher_fragment_container,fragment).commit();
     }
 }
