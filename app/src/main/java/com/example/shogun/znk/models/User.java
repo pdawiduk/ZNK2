@@ -10,6 +10,8 @@ import java.util.Set;
  */
 public class User {
 
+    private volatile static User mInstance = null;
+
 
     private String login;
 
@@ -33,6 +35,7 @@ public class User {
 
 
     private Set<String> authorities = new HashSet<>();
+    private String token;
 
     public User(String login, String password, String firstName, String lastName, String email, boolean activated, String langKey, Set<String> authorities) {
         this.login = login;
@@ -45,7 +48,19 @@ public class User {
         this.authorities = authorities;
     }
 
-    public User() {
+    private User() {
+    }
+
+    public static User getInstance(){
+        if(mInstance == null)
+        {
+           synchronized (User.class) {
+               if(mInstance == null) {
+                   mInstance = new User();
+               }
+           }
+        }
+        return mInstance;
     }
 
     public String getLogin() {
@@ -147,5 +162,13 @@ public class User {
                 ", langKey='" + langKey + '\'' +
                 ", authorities='" + authorities.toString() +
                 "}";
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public String getToken() {
+        return token;
     }
 }

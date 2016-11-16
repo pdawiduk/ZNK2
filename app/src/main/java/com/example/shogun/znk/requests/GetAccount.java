@@ -65,19 +65,20 @@ public class GetAccount extends AsyncTask<String, Void, String> {
     }
 
     public User getUser(String token) {
-        User user = new User();
+        User user = null;
         try {
             String account = execute(String.valueOf(token)).get();
             JSONObject userJSON = new JSONObject(account);
             System.out.println("To jest account: " + account);
 
-            user = new User();
+            user = User.getInstance();
             user.setLogin(userJSON.getString("login"));
             user.setFirstName(userJSON.getString("firstName"));
             user.setLastName(userJSON.getString("lastName"));
             user.setEmail(userJSON.getString("email"));
             user.setActivated(userJSON.getBoolean("activated"));
             user.setLangKey(userJSON.getString("langKey"));
+            user.setToken(token);
             JSONArray jsonArray = userJSON.getJSONArray("authorities");
             Set<String> authoritySet = new HashSet<>();
             for (int i = 0; i < jsonArray.length();i++) {
@@ -91,7 +92,6 @@ public class GetAccount extends AsyncTask<String, Void, String> {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
 
         return user;
     }

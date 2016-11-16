@@ -18,14 +18,13 @@
         tools:text = "23 11 2016"/>
 
     <Button
-        android:id="@+id/btnDeleteConsultation"
+        android:id="@+id/btnCancelConsultation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginRight="32dp"
-        android:text="Odwołaj"
         android:textColor="@android:color/white"
         android:background="@color/colorTulRed"/>
 

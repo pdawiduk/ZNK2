@@ -5,11 +5,13 @@ import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.shogun.znk.R;
 import com.example.shogun.znk.database.FakeDatabase;
 import com.example.shogun.znk.models.Consultation;
+import com.example.shogun.znk.requests.PutConsultation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,20 +48,31 @@ public class TeacherConsultationAdapter extends RecyclerView.Adapter<TeacherCons
     @Override
     public void onBindViewHolder(TeacherConsultationHolder holder, int position) {
         holder.tvDate.setText(consultations.get(position).getDate());
-
+        if(consultations.get(position).getCancelled()) {
+            holder.btnCancelConsultation.setText("Wznów");
+        } else {
+            holder.btnCancelConsultation.setText("Odwołaj");
+        }
     }
 
     public class TeacherConsultationHolder extends RecyclerView.ViewHolder{
         @BindView(R.id.tvDate)
         TextView tvDate;
+        @BindView(R.id.btnCancelConsultation)
+        Button btnCancelConsultation;
+
         public TeacherConsultationHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);
         }
 
-        @OnClick(R.id.btnDeleteConsultation)
-        void delteConsultation(){
-            consultations.remove(getLayoutPosition());
+        @OnClick(R.id.btnCancelConsultation)
+        void cancelConsultation(){
+            PutConsultation putConsultation = new PutConsultation();
+            int id = consultations.get(getLayoutPosition()).getId();
+            Boolean cancelled = !consultations.get(getLayoutPosition()).getCancelled();
+            String date = consultations.get(getLayoutPosition()).getDate();
+            putConsultation.editConsultation(id,cancelled,date);
             notifyDataSetChanged();
         }
     }

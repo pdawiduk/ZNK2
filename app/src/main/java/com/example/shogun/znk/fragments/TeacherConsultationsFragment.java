@@ -13,6 +13,7 @@ import com.example.shogun.znk.R;
 import com.example.shogun.znk.adapters.TeacherConsultationAdapter;
 import com.example.shogun.znk.database.FakeDatabase;
 import com.example.shogun.znk.models.Consultation;
+import com.example.shogun.znk.requests.GetConsultations;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,10 +24,7 @@ import butterknife.ButterKnife;
 
 public class TeacherConsultationsFragment extends Fragment {
 
-FakeDatabase fakeDatabase = new FakeDatabase();
-    List<Consultation> consultationList = fakeDatabase.getConsultations();
-    TeacherConsultationAdapter adapter = new TeacherConsultationAdapter(consultationList);
-    RecyclerView.LayoutManager llm = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
+
     @BindView(R.id.rvTeacherConsultations)
     RecyclerView rvTeacherConsultations;
 
@@ -62,7 +60,13 @@ FakeDatabase fakeDatabase = new FakeDatabase();
     @Override
     public void onResume() {
         super.onResume();
+        GetConsultations getConsultations = new GetConsultations();
+
+        List<Consultation> consultationList = getConsultations.getAllContultations();
+        TeacherConsultationAdapter adapter = new TeacherConsultationAdapter(consultationList);
+        RecyclerView.LayoutManager llm = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
         rvTeacherConsultations.setLayoutManager(llm);
         rvTeacherConsultations.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
 }
