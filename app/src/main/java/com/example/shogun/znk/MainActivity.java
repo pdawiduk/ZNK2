@@ -48,4 +48,9 @@ public class MainActivity extends AppCompatActivity {
         switchFragmentTransaction.beginTransaction().addToBackStack(null).replace(R.id.fragment_container,fragment).commit();
 
     }
+
+    @Override
+    public void onBackPressed() {
+
+    }
 }

@@ -1,5 +1,6 @@
 package com.example.shogun.znk;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -70,6 +71,12 @@ public class StudentActivity extends AppCompatActivity
 
         if (id == R.id.action_settings) {
             return true;
+        }
+
+        if(id == R.id.log_out){
+            Intent intent = new Intent(StudentActivity.this,MainActivity.class);
+            startActivity(intent);
+            finish();
         }
 
         return super.onOptionsItemSelected(item);
