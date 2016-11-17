@@ -52,6 +52,11 @@ public class TeacherConsultationAdapter extends RecyclerView.Adapter<TeacherCons
     public void onBindViewHolder(TeacherConsultationHolder holder, int position) {
         holder.tvDate.setText(consultations.get(position).getDate());
 
+        if (consultations.get(position).getCancelled()) {
+            holder.btnCancelConsultation.setText("Wznów");
+        } else {
+            holder.btnCancelConsultation.setText("Odwołaj");
+        }
     }
 
     public class TeacherConsultationHolder extends RecyclerView.ViewHolder{

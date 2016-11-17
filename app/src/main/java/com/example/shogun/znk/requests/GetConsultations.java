@@ -33,7 +33,7 @@ import static com.example.shogun.znk.R.menu.teacher;
 
 public class GetConsultations extends AsyncTask<String, Void, String> {
 
-    private static final String URL = "http://10.1.0.102:8080";
+    private static final String URL = "http://10.7.2.10:8080";
     private Request request;
 
 
@@ -103,7 +103,7 @@ public class GetConsultations extends AsyncTask<String, Void, String> {
                 String dateTime = jsonObject.getString("dateTime");
                 Date d = sdf.parse(dateTime);
                 String formattedTime = output.format(d);
-                //Boolean cancelled = jsonObject.getBoolean("cancelled");
+                Boolean cancelled = jsonObject.getBoolean("cancelled");
                 JSONArray jsonArray = jsonObject.getJSONArray("registeredStudents");
                 List<String> registeredStudents = new ArrayList<>();
                 for (int j = 0; j < jsonArray.length();j++) {
@@ -111,7 +111,7 @@ public class GetConsultations extends AsyncTask<String, Void, String> {
                     registeredStudents.add(student.getString("firstName") + " " + student.getString("lastName"));
                 }
 
-                consultations.add(new Consultation(consultationId,formattedTime,false,registeredStudents));
+                consultations.add(new Consultation(consultationId,formattedTime,cancelled,registeredStudents));
             } catch (JSONException e) {
                 e.printStackTrace();
             } catch (ParseException e) {

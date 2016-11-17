@@ -1,16 +1,19 @@
 package com.example.shogun.znk.requests;
 
+import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Bundle;
+import android.widget.Toast;
 
 import com.example.shogun.znk.models.User;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Set;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.ExecutionException;
 
 import okhttp3.MediaType;
@@ -20,11 +23,12 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 /**
- * Created by Krystian on 2016-11-12.
+ * Created by Krystian on 2016-11-14.
  */
-public class GetAccount extends AsyncTask<String, Void, String> {
+public class PostConsultation extends AsyncTask<String, Void, String> {
 
     private static final String URL = "http://10.7.2.10:8080";
+    private Request request;
 
     @Override
     protected String doInBackground(String[] params) {
@@ -36,16 +40,19 @@ public class GetAccount extends AsyncTask<String, Void, String> {
 
         String json = null;
         try {
-            json = new JSONObject().put("id_token",params[0]).toString();
+            json = new JSONObject().put("dateTime",params[0]).put("teacherLogin",User.getInstance().getLogin()).put("cancelled",false).toString();
+            System.out.println(json);
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
         RequestBody body = RequestBody.create(JSON, json);
-        Request request = new Request.Builder()
-                .url(URL + "/api/account")
-                .addHeader("Authorization","Bearer " + params[0])
+        request = new Request.Builder()
+                .url(URL + "/api/consultations")
+                .post(body)
+                .addHeader("Authorization", "Bearer " + User.getInstance().getToken())
                 .build();
+
         Response response = null;
         try {
             response = client.newCall(request).execute();
@@ -64,35 +71,21 @@ public class GetAccount extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String message) {
     }
 
-    public User getUser(String token) {
-        User user = null;
+    public void addConsultation(String date) {
+        final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        final SimpleDateFormat output = new SimpleDateFormat("HH:mm:ss dd-MM-yyyy");
         try {
-            String account = execute(String.valueOf(token)).get();
-            JSONObject userJSON = new JSONObject(account);
-            System.out.println("To jest account: " + account);
-
-            user = User.getInstance();
-            user.setLogin(userJSON.getString("login"));
-            user.setFirstName(userJSON.getString("firstName"));
-            user.setLastName(userJSON.getString("lastName"));
-            user.setEmail(userJSON.getString("email"));
-            user.setActivated(userJSON.getBoolean("activated"));
-            user.setLangKey(userJSON.getString("langKey"));
-            user.setToken(token);
-            JSONArray jsonArray = userJSON.getJSONArray("authorities");
-            Set<String> authoritySet = new HashSet<>();
-            for (int i = 0; i < jsonArray.length();i++) {
-                authoritySet.add((jsonArray.getString(i)));
-            }
-            user.setAuthorities(authoritySet);
+            Date d = output.parse(date);
+            String dateToPut = sdf.format(d);
+            System.out.println(execute(dateToPut+".000Z").get());
+        } catch (ParseException e) {
+            e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
         }
-
-        return user;
     }
 }
+
+

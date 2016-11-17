@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.shogun.znk.R;
 import com.example.shogun.znk.models.Consultation;
+import com.example.shogun.znk.requests.PostConsultation;
 
 import java.util.List;
 
@@ -65,7 +66,7 @@ public class AddFragmentConultationFragment extends Fragment {
         cvCalendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(CalendarView calendarView, int i, int i1, int i2) {
-                date = i + "/" + i1 + "/" + i2;
+                date = i2 + "-" + Integer.valueOf(i1+1) + "-" + i;
 
             }
         });
@@ -83,7 +84,9 @@ public class AddFragmentConultationFragment extends Fragment {
     @OnClick(R.id.btnConfirm)
     void addConsultation() {
         synchronized (TeacherConsultationsFragment.consultations) {
-            TeacherConsultationsFragment.consultations.add(new Consultation(date + time, true));
+            PostConsultation postConsultation = new PostConsultation();
+
+            postConsultation.addConsultation(time + ":00 " + date);
             Log.d(TAG, "addConsultation: date "+ date + " time "+time);
             TeacherConsultationsFragment.consultations.notify();
             TeacherConsultationsFragment.getAdapter().notifyDataSetChanged();

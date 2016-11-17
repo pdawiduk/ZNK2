@@ -31,7 +31,7 @@ public class TeacherConsultationsFragment extends Fragment {
     RecyclerView rvTeacherConsultations;
     FakeDatabase database = new FakeDatabase();
     static List<Consultation> consultations = FakeDatabase.getConsultations();
-    static TeacherConsultationAdapter adapter = new TeacherConsultationAdapter(consultations);
+    static TeacherConsultationAdapter adapter;
 
 
     public TeacherConsultationsFragment() {
@@ -67,8 +67,9 @@ public class TeacherConsultationsFragment extends Fragment {
         super.onResume();
         GetConsultations getConsultations = new GetConsultations();
 
-//        List<Consultation> consultationList = getConsultations.getAllContultations();
+        consultations = getConsultations.getAllContultations();
 
+        adapter = new TeacherConsultationAdapter(consultations);
         RecyclerView.LayoutManager llm = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
         rvTeacherConsultations.setLayoutManager(llm);
         rvTeacherConsultations.setAdapter(adapter);
