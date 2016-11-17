@@ -10,7 +10,7 @@ import java.util.Set;
  */
 public class User {
 
-    private volatile static User mInstance = null;
+    private static User mInstance = null;
 
 
     private String login;
@@ -51,14 +51,13 @@ public class User {
     private User() {
     }
 
-    public static User getInstance(){
-        if(mInstance == null)
-        {
-           synchronized (User.class) {
-               if(mInstance == null) {
-                   mInstance = new User();
-               }
-           }
+    public static User getInstance() {
+        if (mInstance == null) {
+
+            if (mInstance == null) {
+                mInstance = new User();
+            }
+
         }
         return mInstance;
     }

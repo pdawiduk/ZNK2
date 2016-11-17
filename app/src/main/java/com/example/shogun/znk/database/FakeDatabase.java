@@ -10,8 +10,8 @@ import java.util.List;
  */
 
 public class FakeDatabase {
-    List<Consultation> consultations = new ArrayList<>();
-    List<String> signnedStudents = new ArrayList<>();
+   static List<Consultation> consultations = new ArrayList<>();
+    static List<String> signnedStudents = new ArrayList<>();
 
     public FakeDatabase() {
         consultations.add(new Consultation("24/07/1955", false));
@@ -32,11 +32,15 @@ public class FakeDatabase {
 
     }
 
-    public List<Consultation> getConsultations() {
+    public static List<Consultation> getConsultations() {
         return consultations;
     }
 
-    public List<String> getSignnedStudents() {
+    public static List<String> getSignnedStudents() {
         return signnedStudents;
+    }
+
+    public void addConsultation(Consultation consultation){
+        consultations.add(consultation);
     }
 }

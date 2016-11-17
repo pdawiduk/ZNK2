@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.shogun.znk.R;
+import com.example.shogun.znk.TeacherActivity;
 import com.example.shogun.znk.adapters.TeacherConsultationAdapter;
 import com.example.shogun.znk.database.FakeDatabase;
 import com.example.shogun.znk.models.Consultation;
@@ -20,6 +21,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 public class TeacherConsultationsFragment extends Fragment {
@@ -27,10 +29,13 @@ public class TeacherConsultationsFragment extends Fragment {
 
     @BindView(R.id.rvTeacherConsultations)
     RecyclerView rvTeacherConsultations;
+    FakeDatabase database = new FakeDatabase();
+    static List<Consultation> consultations = FakeDatabase.getConsultations();
+    static TeacherConsultationAdapter adapter = new TeacherConsultationAdapter(consultations);
 
 
     public TeacherConsultationsFragment() {
-        // Required empty public constructor
+        // Required empt
     }
 
 
@@ -62,11 +67,21 @@ public class TeacherConsultationsFragment extends Fragment {
         super.onResume();
         GetConsultations getConsultations = new GetConsultations();
 
-        List<Consultation> consultationList = getConsultations.getAllContultations();
-        TeacherConsultationAdapter adapter = new TeacherConsultationAdapter(consultationList);
+//        List<Consultation> consultationList = getConsultations.getAllContultations();
+
         RecyclerView.LayoutManager llm = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
         rvTeacherConsultations.setLayoutManager(llm);
         rvTeacherConsultations.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+    }
+
+
+    @OnClick(R.id.btnAddConsultation)
+    void addConsultation(){
+        TeacherActivity.switchContent(AddFragmentConultationFragment.newInstance(consultations));
+    }
+
+    public static TeacherConsultationAdapter getAdapter() {
+        return adapter;
     }
 }
