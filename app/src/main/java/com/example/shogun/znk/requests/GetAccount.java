@@ -24,7 +24,7 @@ import okhttp3.Response;
  */
 public class GetAccount extends AsyncTask<String, Void, String> {
 
-    private static final String URL = "http://10.7.2.10:8080";
+    private static final String URL = com.example.shogun.znk.URL.getInstance().getURL();
 
     @Override
     protected String doInBackground(String[] params) {

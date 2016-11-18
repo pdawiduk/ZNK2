@@ -27,7 +27,7 @@ import okhttp3.Response;
  */
 public class PutConsultation extends AsyncTask<String, Void, String> {
 
-    private static final String URL = "http://10.7.2.10:8080";
+    private static final String URL = com.example.shogun.znk.URL.getInstance().getURL();
     private Request request;
 
     @Override
@@ -40,7 +40,7 @@ public class PutConsultation extends AsyncTask<String, Void, String> {
 
         String json = null;
         try {
-            if(params.length == 1) {
+            if(params.length == 2) {
                 json = new JSONObject().put("id", params[0]).put("cancelled", params[1]).toString();
             } else {
                 json = new JSONObject().put("id",params[0]).put("dateTime",params[1]).put("cancelled",params[2]).toString();

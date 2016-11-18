@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
             actionBar.setBackgroundDrawable(getDrawable(R.color.colorTulRed));
         }
 
-
+        URL.getInstance();
     }
 
     @Override

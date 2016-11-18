@@ -33,7 +33,7 @@ import static com.example.shogun.znk.R.menu.teacher;
 
 public class GetConsultations extends AsyncTask<String, Void, String> {
 
-    private static final String URL = "http://10.7.2.10:8080";
+    private static final String URL = com.example.shogun.znk.URL.getInstance().getURL();
     private Request request;
 
 
