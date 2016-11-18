@@ -36,6 +36,7 @@ public class User {
 
     private Set<String> authorities = new HashSet<>();
     private String token;
+    private int id;
 
     public User(String login, String password, String firstName, String lastName, String email, boolean activated, String langKey, Set<String> authorities) {
         this.login = login;
@@ -127,6 +128,14 @@ public class User {
         this.authorities = authorities;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -170,4 +179,6 @@ public class User {
     public String getToken() {
         return token;
     }
+
+
 }

@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.shogun.znk.R;
 import com.example.shogun.znk.StudentActivity;
+import com.example.shogun.znk.fragments.SelectedTeacherConsultationsFragment;
 import com.example.shogun.znk.fragments.TeacherProfileFragment;
 
 import java.util.List;
@@ -58,7 +59,7 @@ public class StudentConsutationsAdapter extends RecyclerView.Adapter<StudentCons
                 @Override
                 public void onClick(View view) {
 
-                    StudentActivity.switchContent(TeacherProfileFragment.newInstance(teacherList.get(getLayoutPosition())));
+                    StudentActivity.switchContent(SelectedTeacherConsultationsFragment.newInstance());
                 }
             });
         }

@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.shogun.znk.R;
 import com.example.shogun.znk.database.FakeDatabase;
+import com.example.shogun.znk.fragments.TeacherConsultationsFragment;
 import com.example.shogun.znk.models.Consultation;
 import com.example.shogun.znk.requests.PutConsultation;
 
@@ -23,6 +24,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnTouch;
+
+import static com.example.shogun.znk.TeacherActivity.switchContent;
 
 /**
  * Created by Shogun on 15.11.2016.
@@ -77,9 +80,9 @@ public class TeacherConsultationAdapter extends RecyclerView.Adapter<TeacherCons
             PutConsultation putConsultation = new PutConsultation();
             int id = consultations.get(getLayoutPosition()).getId();
             Boolean cancelled = !consultations.get(getLayoutPosition()).getCancelled();
-            String date = consultations.get(getLayoutPosition()).getDate();
-            putConsultation.editConsultation(id,cancelled,date);
+            putConsultation.editConsultation(id,cancelled);
             notifyDataSetChanged();
+            switchContent(TeacherConsultationsFragment.newInstance());
         }
 
 

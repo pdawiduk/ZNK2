@@ -22,6 +22,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import static android.content.ContentValues.TAG;
+import static com.example.shogun.znk.TeacherActivity.switchContent;
 
 
 public class AddFragmentConultationFragment extends Fragment {
@@ -90,6 +91,7 @@ public class AddFragmentConultationFragment extends Fragment {
             Log.d(TAG, "addConsultation: date "+ date + " time "+time);
             TeacherConsultationsFragment.consultations.notify();
             TeacherConsultationsFragment.getAdapter().notifyDataSetChanged();
+            switchContent(TeacherConsultationsFragment.newInstance());
         }
     }
 

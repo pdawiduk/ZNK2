@@ -108,7 +108,7 @@ public class GetConsultations extends AsyncTask<String, Void, String> {
                 List<String> registeredStudents = new ArrayList<>();
                 for (int j = 0; j < jsonArray.length();j++) {
                     JSONObject student = jsonArray.getJSONObject(j);
-                    registeredStudents.add(student.getString("firstName") + " " + student.getString("lastName"));
+                    registeredStudents.add(student.getString("login"));
                 }
 
                 consultations.add(new Consultation(consultationId,formattedTime,cancelled,registeredStudents));

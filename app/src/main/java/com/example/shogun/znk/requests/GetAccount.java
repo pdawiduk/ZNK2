@@ -72,6 +72,7 @@ public class GetAccount extends AsyncTask<String, Void, String> {
             System.out.println("To jest account: " + account);
 
             user = User.getInstance();
+            user.setId(userJSON.getInt("id"));
             user.setLogin(userJSON.getString("login"));
             user.setFirstName(userJSON.getString("firstName"));
             user.setLastName(userJSON.getString("lastName"));

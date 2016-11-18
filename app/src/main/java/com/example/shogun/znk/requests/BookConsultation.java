@@ -25,7 +25,7 @@ import okhttp3.Response;
 /**
  * Created by Krystian on 2016-11-14.
  */
-public class PutConsultation extends AsyncTask<String, Void, String> {
+public class BookConsultation extends AsyncTask<String, Void, String> {
 
     private static final String URL = "http://10.7.2.10:8080";
     private Request request;
@@ -39,19 +39,17 @@ public class PutConsultation extends AsyncTask<String, Void, String> {
         OkHttpClient client = new OkHttpClient();
 
         String json = null;
-        try {
-            json = new JSONObject().put("id",params[0]).put("cancelled",params[1]).toString();
+
+            json = new JSONObject().toString();
             System.out.println(json);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+
 
         RequestBody body = RequestBody.create(JSON, json);
-            request = new Request.Builder()
-                    .url(URL + "/api/consultations")
-                    .put(body)
-                    .addHeader("Authorization", "Bearer " + User.getInstance().getToken())
-                    .build();
+        request = new Request.Builder()
+                .url(URL + "/api/consultations/" + params[0] + "/book/" + params[1])
+                .post(body)
+                .addHeader("Authorization", "Bearer " + User.getInstance().getToken())
+                .build();
 
         Response response = null;
         try {
@@ -71,9 +69,9 @@ public class PutConsultation extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String message) {
     }
 
-    public void editConsultation(int id, Boolean cancelled) {
+    public void bookOnConsultation(int consultationId, int studentId) {
         try {
-            System.out.println(execute(String.valueOf(id),String.valueOf(cancelled)).get());
+            System.out.println(execute(String.valueOf(consultationId), String.valueOf(studentId)).get());
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -81,4 +79,5 @@ public class PutConsultation extends AsyncTask<String, Void, String> {
         }
     }
 }
+
 
