@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.shogun.znk.R;
 import com.example.shogun.znk.database.FakeDatabase;
+import com.example.shogun.znk.fragments.ModifyConsultationDateFragment;
 import com.example.shogun.znk.fragments.TeacherConsultationsFragment;
 import com.example.shogun.znk.models.Consultation;
 import com.example.shogun.znk.requests.PutConsultation;
@@ -73,6 +74,13 @@ public class TeacherConsultationAdapter extends RecyclerView.Adapter<TeacherCons
         public TeacherConsultationHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);
+
+            tvDate.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    switchContent(ModifyConsultationDateFragment.newInstance(consultations,consultations.get(getLayoutPosition()).getId(),consultations.get(getLayoutPosition()).getCancelled()));
+                }
+            });
         }
 
         @OnClick(R.id.btnCancelConsultation)

@@ -61,14 +61,11 @@ public class SelectedTeacherConsultationAdapter extends RecyclerView.Adapter<Sel
     public void onBindViewHolder(TeacherConsultationHolder holder, int position) {
         holder.tvDate.setText(consultations.get(position).getDate());
         holder.btnBookConsultation.setText("Zapisz");
-        for (Consultation consultation : consultations) {
-            for (String login : consultation.getStudentList()){
+            for (String login : consultations.get(position).getStudentList()){
                 if(login.equals(User.getInstance().getLogin())){
                     holder.btnBookConsultation.setText("Wypisz");
-                    break;
                 }
             }
-        }
     }
 
     public class TeacherConsultationHolder extends RecyclerView.ViewHolder{

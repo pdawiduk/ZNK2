@@ -40,7 +40,11 @@ public class PutConsultation extends AsyncTask<String, Void, String> {
 
         String json = null;
         try {
-            json = new JSONObject().put("id",params[0]).put("cancelled",params[1]).toString();
+            if(params.length == 1) {
+                json = new JSONObject().put("id", params[0]).put("cancelled", params[1]).toString();
+            } else {
+                json = new JSONObject().put("id",params[0]).put("dateTime",params[1]).put("cancelled",params[2]).toString();
+            }
             System.out.println(json);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -77,6 +81,23 @@ public class PutConsultation extends AsyncTask<String, Void, String> {
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void editDateConsultation(int id, String date, boolean cancelled) {
+        final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        final SimpleDateFormat output = new SimpleDateFormat("HH:mm:ss dd-MM-yyyy");
+
+        try {
+            Date d = output.parse(date);
+            String dateToPut = sdf.format(d);
+            System.out.println(execute(String.valueOf(id),dateToPut+".000Z",String.valueOf(cancelled)).get());
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
             e.printStackTrace();
         }
     }
