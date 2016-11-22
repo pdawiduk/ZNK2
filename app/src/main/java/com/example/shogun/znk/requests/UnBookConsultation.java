@@ -46,7 +46,7 @@ public class UnBookConsultation extends AsyncTask<String, Void, String> {
 
         RequestBody body = RequestBody.create(JSON, json);
         request = new Request.Builder()
-                .url(URL + "/api/consultations/" + params[0] + "/unBook/" + params[1])
+                .url(URL + "/api/consultations/" + params[0] + "/unBook/")
                 .post(body)
                 .addHeader("Authorization", "Bearer " + User.getInstance().getToken())
                 .build();
@@ -69,9 +69,9 @@ public class UnBookConsultation extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String message) {
     }
 
-    public void unBookOnConsultation(int consultationId, int studentId) {
+    public void unBookOnConsultation(int consultationId) {
         try {
-            System.out.println(execute(String.valueOf(consultationId), String.valueOf(studentId)).get());
+            System.out.println(execute(String.valueOf(consultationId)).get());
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

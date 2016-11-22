@@ -5,6 +5,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.shogun.znk.fragments.AddFragmentConultationFragment">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.constraint.ConstraintLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
     <TimePicker
         android:id="@+id/tpTime"
         android:layout_width="match_parent"
@@ -16,11 +28,34 @@
 
     <CalendarView
         android:id="@+id/cvCalendar"
-        android:layout_width="0dp"
-        android:layout_height="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tpTime"/>
+
+            <TextView
+                android:id="@+id/tvSignedStudent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorTulRed"
+                android:textColor="@android:color/white"
+                android:text="Zapisani studenci"
+                android:textAlignment="center"
+                android:textSize="35sp"
+                app:layout_constraintTop_toBottomOf="@id/cvCalendar"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvSignedStudents"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvSignedStudent" />
+
     <Button
         android:id="@+id/btnConfirmEdit"
         android:layout_width="0dp"
@@ -32,5 +67,10 @@
         android:background="@color/colorTulRed"
         android:textColor="@android:color/white"
         android:layout_marginBottom="0dp"/>
+
+
+
+</android.support.constraint.ConstraintLayout>
+    </ScrollView>
 
 </android.support.constraint.ConstraintLayout>

@@ -88,9 +88,9 @@ public class SelectedTeacherConsultationAdapter extends RecyclerView.Adapter<Sel
             int consultationId = consultations.get(getLayoutPosition()).getId();
             int studentId = User.getInstance().getId();
             if(btnBookConsultation.getText().equals("Wypisz")) {
-                unBookConsultation.unBookOnConsultation(consultationId,studentId);
+                unBookConsultation.unBookOnConsultation(consultationId);
             } else {
-                bookConsultation.bookOnConsultation(consultationId,studentId);
+                bookConsultation.bookOnConsultation(consultationId);
             }
             notifyDataSetChanged();
             switchContent(SelectedTeacherConsultationsFragment.newInstance());

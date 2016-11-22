@@ -3,6 +3,9 @@ package com.example.shogun.znk.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +15,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.shogun.znk.R;
+import com.example.shogun.znk.adapters.ConsultationsAdapter;
 import com.example.shogun.znk.models.Consultation;
 import com.example.shogun.znk.requests.PostConsultation;
 
@@ -29,11 +33,11 @@ public class AddFragmentConultationFragment extends Fragment {
 
     private static Consultation consultation;
     private List<Consultation> consultations;
+    ConsultationsAdapter consultationsAdapter ;
     @BindView(R.id.tpTime)
     TimePicker tpTime;
     @BindView(R.id.cvCalendar)
     CalendarView cvCalendar;
-
 
     private String date;
     private String time;
@@ -79,7 +83,13 @@ public class AddFragmentConultationFragment extends Fragment {
 
             }
         });
+
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 
     @OnClick(R.id.btnConfirm)

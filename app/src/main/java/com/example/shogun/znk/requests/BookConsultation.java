@@ -47,7 +47,7 @@ public class BookConsultation extends AsyncTask<String, Void, String> {
 
         RequestBody body = RequestBody.create(JSON, json);
         request = new Request.Builder()
-                .url(URL + "/api/consultations/" + params[0] + "/book/" + params[1])
+                .url(URL + "/api/consultations/" + params[0] + "/book/")
                 .post(body)
                 .addHeader("Authorization", "Bearer " + User.getInstance().getToken())
                 .build();
@@ -70,9 +70,9 @@ public class BookConsultation extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String message) {
     }
 
-    public void bookOnConsultation(int consultationId, int studentId) {
+    public void bookOnConsultation(int consultationId) {
         try {
-            System.out.println(execute(String.valueOf(consultationId), String.valueOf(studentId)).get());
+            System.out.println(execute(String.valueOf(consultationId)).get());
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
