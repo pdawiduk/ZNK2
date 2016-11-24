@@ -109,7 +109,7 @@ public class ModifyConsultationDateFragment extends Fragment {
         synchronized (TeacherConsultationsFragment.consultations) {
             PutConsultation putConsultation = new PutConsultation();
 
-            putConsultation.editDateConsultation(id, time + ":00 " + date, cancelled);
+            putConsultation.editDateConsultation(id, time + " " + date, cancelled);
             TeacherConsultationsFragment.consultations.notify();
             TeacherConsultationsFragment.getAdapter().notifyDataSetChanged();
             switchContent(TeacherConsultationsFragment.newInstance());
