@@ -91,8 +91,8 @@ public class GetConsultations extends AsyncTask<String, Void, String> {
         }
 
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-        SimpleDateFormat output = new SimpleDateFormat("HH:mm:ss dd-MM-yyyy ");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+        SimpleDateFormat output = new SimpleDateFormat("HH:mm dd-MM-yyyy ");
 
 
         for(int i = 0; i < consultationJSON.length(); i++) {
@@ -120,5 +120,51 @@ public class GetConsultations extends AsyncTask<String, Void, String> {
 
         }
         return consultations;
+    }
+
+    public Consultation getOneConsultationById(int id){
+        Consultation consultation = null;
+        JSONObject consultationJSON = null;
+        try {
+            String result = execute(String.valueOf(id)).get();
+            System.out.println("To jest result: " + result);
+            consultationJSON = new JSONObject(result);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        SimpleDateFormat output = new SimpleDateFormat("HH:mm:ss dd-MM-yyyy ");
+
+
+
+
+            try {
+                int consultationId = consultationJSON.getInt("id");
+                String dateTime = consultationJSON.getString("dateTime");
+                Date d = sdf.parse(dateTime);
+                String formattedTime = output.format(d);
+                Boolean cancelled = consultationJSON.getBoolean("cancelled");
+                JSONArray jsonArray = consultationJSON.getJSONArray("registeredStudents");
+                List<String> registeredStudents = new ArrayList<>();
+                for (int j = 0; j < jsonArray.length();j++) {
+                    JSONObject student = jsonArray.getJSONObject(j);
+                    registeredStudents.add(student.getString("login"));
+                }
+
+                consultation = new Consultation(consultationId,formattedTime,cancelled,registeredStudents);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+
+        return consultation;
     }
 }

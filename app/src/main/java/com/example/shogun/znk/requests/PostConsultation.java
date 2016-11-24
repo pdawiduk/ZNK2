@@ -40,18 +40,29 @@ public class PostConsultation extends AsyncTask<String, Void, String> {
 
         String json = null;
         try {
-            json = new JSONObject().put("dateTime",params[0]).put("teacherLogin",User.getInstance().getLogin()).put("cancelled",false).toString();
+            if(params.length==1){
+                json = new JSONObject().put("id",params[0]).toString();
+                RequestBody body = RequestBody.create(JSON, json);
+                request = new Request.Builder()
+                        .url(URL + "/api/consultations/" + params[0] + "/cancel")
+                        .post(body)
+                        .addHeader("Authorization", "Bearer " + User.getInstance().getToken())
+                        .build();
+            } else {
+                json = new JSONObject().put("dateTime", params[0]).put("teacherId", User.getInstance().getId()).put("cancelled", params[1]).toString();
+                RequestBody body = RequestBody.create(JSON, json);
+                request = new Request.Builder()
+                        .url(URL + "/api/consultations")
+                        .post(body)
+                        .addHeader("Authorization", "Bearer " + User.getInstance().getToken())
+                        .build();
+            }
             System.out.println(json);
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        RequestBody body = RequestBody.create(JSON, json);
-        request = new Request.Builder()
-                .url(URL + "/api/consultations")
-                .post(body)
-                .addHeader("Authorization", "Bearer " + User.getInstance().getToken())
-                .build();
+
 
         Response response = null;
         try {
@@ -77,9 +88,19 @@ public class PostConsultation extends AsyncTask<String, Void, String> {
         try {
             Date d = output.parse(date);
             String dateToPut = sdf.format(d);
-            System.out.println(execute(dateToPut+".000Z").get());
+            System.out.println(execute(dateToPut+".000Z", String.valueOf(false)).get());
         } catch (ParseException e) {
             e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void cancelConsultation(int id){
+        try {
+            System.out.println(execute(String.valueOf(id)).get());
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

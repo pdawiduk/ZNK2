@@ -15,6 +15,7 @@ import com.example.shogun.znk.database.FakeDatabase;
 import com.example.shogun.znk.fragments.ModifyConsultationDateFragment;
 import com.example.shogun.znk.fragments.TeacherConsultationsFragment;
 import com.example.shogun.znk.models.Consultation;
+import com.example.shogun.znk.models.User;
 import com.example.shogun.znk.requests.PutConsultation;
 
 import java.util.ArrayList;
@@ -78,7 +79,7 @@ public class TeacherConsultationAdapter extends RecyclerView.Adapter<TeacherCons
             tvDate.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    switchContent(ModifyConsultationDateFragment.newInstance(consultations,consultations.get(getLayoutPosition()).getId(),consultations.get(getLayoutPosition()).getCancelled()));
+                    switchContent(ModifyConsultationDateFragment.newInstance(consultations.get(getLayoutPosition()).getStudentList(),consultations.get(getLayoutPosition()).getId(),consultations.get(getLayoutPosition()).getCancelled()));
                 }
             });
         }
@@ -88,7 +89,8 @@ public class TeacherConsultationAdapter extends RecyclerView.Adapter<TeacherCons
             PutConsultation putConsultation = new PutConsultation();
             int id = consultations.get(getLayoutPosition()).getId();
             Boolean cancelled = !consultations.get(getLayoutPosition()).getCancelled();
-            putConsultation.editConsultation(id,cancelled);
+            String date = consultations.get(getLayoutPosition()).getDate();
+            putConsultation.editDateConsultation(id,date,cancelled);
             notifyDataSetChanged();
             switchContent(TeacherConsultationsFragment.newInstance());
         }

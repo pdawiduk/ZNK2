@@ -5,19 +5,18 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import com.example.shogun.znk.R;
 import com.example.shogun.znk.adapters.ConsultationsAdapter;
+import com.example.shogun.znk.adapters.SignedStudentsAdapter;
 import com.example.shogun.znk.database.FakeDatabase;
 import com.example.shogun.znk.models.Consultation;
-import com.example.shogun.znk.requests.PostConsultation;
+import com.example.shogun.znk.models.User;
 import com.example.shogun.znk.requests.PutConsultation;
 
 import java.util.List;
@@ -26,15 +25,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import static android.content.ContentValues.TAG;
 import static com.example.shogun.znk.TeacherActivity.switchContent;
 
 
 public class ModifyConsultationDateFragment extends Fragment {
 
-    private static Consultation consultation;
     private static int id;
-    private List<Consultation> consultations;
     FakeDatabase fakeDatabase = new FakeDatabase();
     @BindView(R.id.tpTime)
     TimePicker tpTime;
@@ -48,7 +44,8 @@ public class ModifyConsultationDateFragment extends Fragment {
     private String date;
     private String time;
     private boolean cancelled;
-    private ConsultationsAdapter consultationsAdapter = new ConsultationsAdapter(getContext(),FakeDatabase.getConsultations());
+    private SignedStudentsAdapter signedStudentsAdapter;
+    private List<String> signedStudetnsList;
 
 
     public ModifyConsultationDateFragment() {
@@ -56,9 +53,9 @@ public class ModifyConsultationDateFragment extends Fragment {
     }
 
 
-    public static ModifyConsultationDateFragment newInstance(List<Consultation> consultations, int id, boolean cancelled) {
+    public static ModifyConsultationDateFragment newInstance(List<String> signedStudentsList, int id, boolean cancelled) {
         ModifyConsultationDateFragment fragment = new ModifyConsultationDateFragment();
-        fragment.consultations = consultations;
+        fragment.signedStudetnsList = signedStudentsList;
         fragment.id = id;
         fragment.cancelled = cancelled;
         Bundle args = new Bundle();
@@ -100,9 +97,9 @@ public class ModifyConsultationDateFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-            consultationsAdapter = new ConsultationsAdapter(getContext(), consultations);
+            signedStudentsAdapter = new SignedStudentsAdapter(getContext(),signedStudetnsList);
             rvSignedStudents.setLayoutManager(llm);
-            rvSignedStudents.setAdapter(consultationsAdapter);
+            rvSignedStudents.setAdapter(signedStudentsAdapter);
 
 
     }
