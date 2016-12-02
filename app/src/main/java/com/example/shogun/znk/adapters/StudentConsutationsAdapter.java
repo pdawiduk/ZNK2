@@ -12,6 +12,7 @@ import com.example.shogun.znk.R;
 import com.example.shogun.znk.StudentActivity;
 import com.example.shogun.znk.fragments.SelectedTeacherConsultationsFragment;
 import com.example.shogun.znk.fragments.TeacherProfileFragment;
+import com.example.shogun.znk.models.Teacher;
 
 import java.util.List;
 
@@ -21,10 +22,10 @@ import java.util.List;
 
 public class StudentConsutationsAdapter extends RecyclerView.Adapter<StudentConsutationsAdapter.ConsultationHolder> {
 
-    List<String> teacherList;
+    List<Teacher> teacherList;
     Context context;
 
-    public StudentConsutationsAdapter(Context context, List<String> teacherList) {
+    public StudentConsutationsAdapter(Context context, List<Teacher> teacherList) {
         this.teacherList = teacherList;
         this.context = context;
     }
@@ -46,7 +47,7 @@ public class StudentConsutationsAdapter extends RecyclerView.Adapter<StudentCons
     @Override
     public void onBindViewHolder(ConsultationHolder holder, int position) {
 
-       holder.textView.setText( teacherList.get(position));
+       holder.textView.setText( teacherList.get(position).getLogin());
     }
 
     class ConsultationHolder extends RecyclerView.ViewHolder{

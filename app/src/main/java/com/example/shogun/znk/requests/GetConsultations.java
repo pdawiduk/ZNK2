@@ -48,7 +48,7 @@ public class GetConsultations extends AsyncTask<String, Void, String> {
 
         if(params.length==1) {
              request = new Request.Builder()
-                    .url(URL + "/api/consultations/" + params[0])
+                    .url(URL + "/api/consultations/teacher/" + params[0])
                     .addHeader("Authorization", "Bearer " + User.getInstance().getToken())
                     .build();
         } else if(params.length == 0){

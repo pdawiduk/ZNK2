@@ -14,6 +14,7 @@ import com.example.shogun.znk.TeacherActivity;
 import com.example.shogun.znk.adapters.TeacherConsultationAdapter;
 import com.example.shogun.znk.database.FakeDatabase;
 import com.example.shogun.znk.models.Consultation;
+import com.example.shogun.znk.models.User;
 import com.example.shogun.znk.requests.GetConsultations;
 
 import java.util.ArrayList;

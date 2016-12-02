@@ -18,6 +18,8 @@ import com.example.shogun.znk.R;
 import com.example.shogun.znk.StudentActivity;
 import com.example.shogun.znk.adapters.ConsultationsAdapter;
 import com.example.shogun.znk.adapters.StudentConsutationsAdapter;
+import com.example.shogun.znk.models.Teacher;
+import com.example.shogun.znk.requests.GetTeachers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +32,7 @@ public class TeacherListFragment extends Fragment {
 
     @BindView(R.id.rvTeachersList)
     RecyclerView rvTeacherList;
-    List<String> teachers = new ArrayList<>();
+    List<Teacher> teachers = new ArrayList<>();
     StudentConsutationsAdapter adapter ;
     public TeacherListFragment() {
         // Required empty public constructor
@@ -85,13 +87,8 @@ public class TeacherListFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        teachers.add("Karol nowak");
-        teachers.add("Jan kowalski");
-        teachers.add("Krzysztof skiba");
-        teachers.add("Tadeusz Pan");
-        teachers.add("Kerry king");
-        teachers.add("Markras");
-        teachers.add("prof. Dominik Sankowski");
+        GetTeachers getTeachers = new GetTeachers();
+        teachers = getTeachers.getAllTeachers();
         adapter = new StudentConsutationsAdapter(getContext(),teachers);
         RecyclerView.LayoutManager llm = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
         rvTeacherList.setLayoutManager(llm);
