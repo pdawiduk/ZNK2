@@ -16,6 +16,7 @@ import com.example.shogun.znk.fragments.ModifyConsultationDateFragment;
 import com.example.shogun.znk.fragments.TeacherConsultationsFragment;
 import com.example.shogun.znk.models.Consultation;
 import com.example.shogun.znk.models.User;
+import com.example.shogun.znk.requests.CancelConsultation;
 import com.example.shogun.znk.requests.PutConsultation;
 
 import java.util.ArrayList;
@@ -39,7 +40,11 @@ public class TeacherConsultationAdapter extends RecyclerView.Adapter<TeacherCons
     List<Consultation> consultations = new ArrayList<>();
 
     public TeacherConsultationAdapter(List<Consultation> consultations) {
-        this.consultations = consultations;
+        for(Consultation consultation:consultations){
+            if(!consultation.getCancelled()){
+                this.consultations.add(consultation);
+            }
+        }
     }
 
     @Override
@@ -86,11 +91,9 @@ public class TeacherConsultationAdapter extends RecyclerView.Adapter<TeacherCons
 
         @OnClick(R.id.btnCancelConsultation)
         void cancelConsultation(){
-            PutConsultation putConsultation = new PutConsultation();
+            CancelConsultation cancelConsultation = new CancelConsultation();
             int id = consultations.get(getLayoutPosition()).getId();
-            Boolean cancelled = !consultations.get(getLayoutPosition()).getCancelled();
-            String date = consultations.get(getLayoutPosition()).getDate();
-            putConsultation.editDateConsultation(id,date,cancelled);
+            cancelConsultation.cancelConsultation(id);
             notifyDataSetChanged();
             switchContent(TeacherConsultationsFragment.newInstance());
         }
