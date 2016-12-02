@@ -75,11 +75,11 @@ public class GetConsultations extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String message) {
     }
 
-    public List<Consultation> getAllContultations() {
+    public List<Consultation> getAllContultations(long id) {
         List<Consultation> consultations = new ArrayList<>();
         JSONArray consultationJSON = null;
         try {
-            String result = execute().get();
+            String result = execute(String.valueOf(id)).get();
             System.out.println("To jest result: " + result);
             consultationJSON = new JSONArray(result);
         } catch (InterruptedException e) {

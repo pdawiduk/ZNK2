@@ -41,9 +41,11 @@ public class SelectedTeacherConsultationAdapter extends RecyclerView.Adapter<Sel
 
 
     List<Consultation> consultations = new ArrayList<>();
+    private long id;
 
-    public SelectedTeacherConsultationAdapter(List<Consultation> consultations) {
+    public SelectedTeacherConsultationAdapter(List<Consultation> consultations,long id) {
         this.consultations = consultations;
+        this.id = id;
     }
 
     @Override
@@ -93,7 +95,7 @@ public class SelectedTeacherConsultationAdapter extends RecyclerView.Adapter<Sel
                 bookConsultation.bookOnConsultation(consultationId);
             }
             notifyDataSetChanged();
-            switchContent(SelectedTeacherConsultationsFragment.newInstance());
+            switchContent(SelectedTeacherConsultationsFragment.newInstance(id));
         }
 
 

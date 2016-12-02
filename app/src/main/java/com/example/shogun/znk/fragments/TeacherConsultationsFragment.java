@@ -68,7 +68,7 @@ public class TeacherConsultationsFragment extends Fragment {
         super.onResume();
         GetConsultations getConsultations = new GetConsultations();
 
-        consultations = getConsultations.getAllContultations();
+        consultations = getConsultations.getAllContultations(User.getInstance().getId());
 
         adapter = new TeacherConsultationAdapter(consultations);
         RecyclerView.LayoutManager llm = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);

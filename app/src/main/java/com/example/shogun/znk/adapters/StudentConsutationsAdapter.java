@@ -60,7 +60,7 @@ public class StudentConsutationsAdapter extends RecyclerView.Adapter<StudentCons
                 @Override
                 public void onClick(View view) {
 
-                    StudentActivity.switchContent(SelectedTeacherConsultationsFragment.newInstance());
+                    StudentActivity.switchContent(SelectedTeacherConsultationsFragment.newInstance(teacherList.get(getLayoutPosition()).getId()));
                 }
             });
         }

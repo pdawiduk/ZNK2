@@ -33,6 +33,7 @@ public class SelectedTeacherConsultationsFragment extends Fragment {
     FakeDatabase database = new FakeDatabase();
     static List<Consultation> consultations = FakeDatabase.getConsultations();
     static SelectedTeacherConsultationAdapter adapter;
+    private long id;
 
 
     public SelectedTeacherConsultationsFragment() {
@@ -40,9 +41,10 @@ public class SelectedTeacherConsultationsFragment extends Fragment {
     }
 
 
-    public static SelectedTeacherConsultationsFragment newInstance() {
+    public static SelectedTeacherConsultationsFragment newInstance(long id) {
         SelectedTeacherConsultationsFragment fragment = new SelectedTeacherConsultationsFragment();
         Bundle args = new Bundle();
+        fragment.id = id;
 
         fragment.setArguments(args);
         return fragment;
@@ -68,9 +70,9 @@ public class SelectedTeacherConsultationsFragment extends Fragment {
         super.onResume();
         GetConsultations getConsultations = new GetConsultations();
 
-        consultations = getConsultations.getAllContultations();
+        consultations = getConsultations.getAllContultations(id);
 
-        adapter = new SelectedTeacherConsultationAdapter(consultations);
+        adapter = new SelectedTeacherConsultationAdapter(consultations,id);
         RecyclerView.LayoutManager llm = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
         rvTeacherConsultations.setLayoutManager(llm);
         rvTeacherConsultations.setAdapter(adapter);
