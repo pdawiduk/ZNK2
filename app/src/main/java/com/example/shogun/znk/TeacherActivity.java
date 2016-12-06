@@ -2,12 +2,9 @@ package com.example.shogun.znk;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -17,9 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.shogun.znk.fragments.MainFragment;
 import com.example.shogun.znk.fragments.TeacherConsultationsFragment;
-import com.example.shogun.znk.fragments.TeacherProfileFragment;
 import com.example.shogun.znk.fragments.TeacherWelcomeFragment;
 
 import butterknife.ButterKnife;
@@ -78,7 +73,8 @@ public class TeacherActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            Intent intent = new Intent(this,ProfileActivity.class);
+            startActivity(intent);
         }
 
         if(id == R.id.log_out){

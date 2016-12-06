@@ -34,6 +34,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.shogun.znk.MainActivity" />
         </activity>
+        <activity
+            android:name=".ProfileActivity"
+            android:label="ProfileActivity"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.shogun.znk.MainActivity"/>
+        </activity>
     </application>
 
 </manifest>

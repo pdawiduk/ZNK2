@@ -11,7 +11,7 @@ import com.example.shogun.znk.models.User;
 public class URL  {
     private static URL mInstance = null;
 
-    String URL ="http://10.7.2.10:8080";
+    String URL ="https://zapisy-na-konsultacje.herokuapp.com";
 
     private URL() {
     }
