@@ -32,6 +32,6 @@ public class ProfileActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
         switchFragmentTransaction = getSupportFragmentManager();
-        fragmentTransaction.replace(R.id.fragment_container, ProfileFragment.newInstance()).commit();
+        fragmentTransaction.replace(R.id.fragment_container, ProfileFragment.newInstance(this)).commit();
     }
 }

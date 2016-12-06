@@ -10,10 +10,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.shogun.znk.ProfileActivity;
 import com.example.shogun.znk.R;
 import com.example.shogun.znk.models.User;
+import com.example.shogun.znk.requests.PutUser;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -25,10 +26,11 @@ public class ProfileFragment extends Fragment {
 
     EditText etFirstName;
     EditText etLastName;
-    EditText etConsultationDate;
+    EditText etConsultationLocalization;
     Button btnSaveProfile;
     TextView etLogin;
-    TextView tvConsultationDate;
+    TextView tvConsultationLocalization;
+    ProfileActivity profileActivity;
 
 
 
@@ -36,8 +38,9 @@ public class ProfileFragment extends Fragment {
     public ProfileFragment() {
     }
 
-    public static ProfileFragment newInstance() {
+    public static ProfileFragment newInstance(ProfileActivity profileActivity) {
         ProfileFragment fragment = new ProfileFragment();
+        fragment.profileActivity = profileActivity;
         return fragment;
     }
 
@@ -55,22 +58,33 @@ public class ProfileFragment extends Fragment {
 
         etFirstName = (EditText) view.findViewById(R.id.etFirstName);
         etLastName = (EditText) view.findViewById(R.id.etLastName);
-        etConsultationDate = (EditText) view.findViewById(R.id.etConsultationDate);
+        etConsultationLocalization = (EditText) view.findViewById(R.id.etConsultationLocalization);
         btnSaveProfile = (Button) view.findViewById(R.id.btnSaveProfile);
         etLogin = (TextView) view.findViewById(R.id.tvLogin);
-        tvConsultationDate = (TextView) view.findViewById(R.id.tvConsultationDate);
+        tvConsultationLocalization = (TextView) view.findViewById(R.id.tvConsultationLocalization);
 
         etLogin.setText(String.valueOf(User.getInstance().getLogin()));
         etFirstName.setText(String.valueOf(User.getInstance().getFirstName()));
         etLastName.setText(String.valueOf(User.getInstance().getLastName()));
         if(User.getInstance().getAuthorities().contains("ROLE_STUDENT")){
-            etConsultationDate.setVisibility(View.GONE);
-            tvConsultationDate.setVisibility(View.GONE);
+            etConsultationLocalization.setVisibility(View.GONE);
+            tvConsultationLocalization.setVisibility(View.GONE);
 
         } else {
-            etConsultationDate.setVisibility(View.VISIBLE);
-            tvConsultationDate.setVisibility(View.VISIBLE);
+            etConsultationLocalization.setVisibility(View.VISIBLE);
+            tvConsultationLocalization.setVisibility(View.VISIBLE);
         }
+
+        btnSaveProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PutUser putUser = new PutUser();
+                putUser.updateProfile(etFirstName.getText().toString(),etLastName.getText().toString());
+                User.getInstance().setFirstName(etFirstName.getText().toString());
+                User.getInstance().setLastName(etLastName.getText().toString());
+                profileActivity.finish();
+            }
+        });
 
         ButterKnife.bind(this, view);
         return view;

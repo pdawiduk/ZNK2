@@ -54,8 +54,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Data konsultacji"
-        android:id="@+id/tvConsultationDate"
+        android:text="Lokalizacja konsultacji"
+        android:id="@+id/tvConsultationLocalization"
         android:layout_marginTop="50dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -63,11 +63,10 @@
     <EditText
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:id="@+id/etConsultationDate"
-        android:inputType="date"
+        android:id="@+id/etConsultationLocalization"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvConsultationDate"/>
+        app:layout_constraintTop_toBottomOf="@+id/tvConsultationLocalization"/>
 
     <Button
         android:layout_width="150dp"
@@ -76,7 +75,7 @@
         android:id="@+id/btnSaveProfile"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etConsultationDate"
+        app:layout_constraintTop_toBottomOf="@+id/etConsultationLocalization"
         android:background="@color/colorTulRed"
         android:text="Zapisz"
         android:textColor="@android:color/white"/>
