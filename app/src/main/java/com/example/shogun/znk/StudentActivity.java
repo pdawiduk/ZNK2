@@ -14,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.shogun.znk.fragments.SignedConsultationsFragment;
 import com.example.shogun.znk.fragments.StudentWelcomeFragment;
 import com.example.shogun.znk.fragments.TeacherListFragment;
 
@@ -92,7 +93,7 @@ public class StudentActivity extends AppCompatActivity
         if (id == R.id.teachers) {
             switchContent(TeacherListFragment.newInstance());
         } else if (id == R.id.nav_gallery) {
-
+            switchContent(SignedConsultationsFragment.newInstance());
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
