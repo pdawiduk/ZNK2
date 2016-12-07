@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1061505382908",
+    "firebase_url": "https://znk2-fffcc.firebaseio.com",
+    "project_id": "znk2-fffcc",
+    "storage_bucket": "znk2-fffcc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1061505382908:android:5731adbb17d9888c",
+        "android_client_info": {
+          "package_name": "com.example.shogun.znk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1061505382908-ldf3271pto5ov3p0d35as5rp8p32cc24.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnUUrMQdRbcmQf0scvkRtnW7VDsmaI8i0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
