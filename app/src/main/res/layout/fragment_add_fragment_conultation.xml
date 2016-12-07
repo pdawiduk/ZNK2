@@ -6,7 +6,7 @@
     tools:context="com.example.shogun.znk.fragments.AddFragmentConultationFragment">
 
     <ScrollView
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -19,7 +19,7 @@
 
             <TimePicker
                 android:id="@+id/tpTime"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="330dp"
                 android:layout_marginTop="50dp"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -28,21 +28,36 @@
 
             <CalendarView
                 android:id="@+id/cvCalendar"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tpTime" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lokalizacja konsultacji"
+                android:id="@+id/tvConsultationLocalization"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cvCalendar"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:id="@+id/etConsultationLocalization"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvConsultationLocalization"/>
+
             <Button
                 android:id="@+id/btnConfirm"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="0dp"
                 android:background="@color/colorTulRed"
                 android:text="Zapisz"
                 android:textColor="@android:color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/etConsultationLocalization"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent" />
 

@@ -11,12 +11,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
+import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.shogun.znk.R;
 import com.example.shogun.znk.adapters.ConsultationsAdapter;
 import com.example.shogun.znk.models.Consultation;
+import com.example.shogun.znk.models.User;
 import com.example.shogun.znk.requests.PostConsultation;
 
 import java.util.List;
@@ -38,6 +40,8 @@ public class AddFragmentConultationFragment extends Fragment {
     TimePicker tpTime;
     @BindView(R.id.cvCalendar)
     CalendarView cvCalendar;
+    @BindView(R.id.etConsultationLocalization)
+    EditText consultationLocalization;
 
     private String date;
     private String time;
@@ -83,7 +87,6 @@ public class AddFragmentConultationFragment extends Fragment {
 
             }
         });
-
         return view;
     }
 
