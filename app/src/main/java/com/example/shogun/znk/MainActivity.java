@@ -1,5 +1,6 @@
 package com.example.shogun.znk;
 
+import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
