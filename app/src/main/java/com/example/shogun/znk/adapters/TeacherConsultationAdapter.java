@@ -60,7 +60,7 @@ public class TeacherConsultationAdapter extends RecyclerView.Adapter<TeacherCons
 
     @Override
     public void onBindViewHolder(TeacherConsultationHolder holder, int position) {
-        holder.tvDate.setText(consultations.get(position).getDate());
+        holder.tvDate.setText(consultations.get(position).getDate() + "\n" + consultations.get(position).getAddress());
 
         if (consultations.get(position).getCancelled()) {
             holder.btnCancelConsultation.setText("Wznów");

@@ -33,12 +33,14 @@ public class User {
 
     private String langKey;
 
+    private String address;
+
 
     private Set<String> authorities = new HashSet<>();
     private String token;
     private int id;
 
-    public User(String login, String password, String firstName, String lastName, String email, boolean activated, String langKey, Set<String> authorities) {
+    public User(String login, String password, String firstName, String lastName, String email, boolean activated, String langKey, Set<String> authorities, String address) {
         this.login = login;
         this.password = password;
         this.firstName = firstName;
@@ -47,6 +49,7 @@ public class User {
         this.activated = activated;
         this.langKey = langKey;
         this.authorities = authorities;
+        this.address = address;
     }
 
     private User() {
@@ -134,6 +137,14 @@ public class User {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     @Override

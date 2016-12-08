@@ -40,7 +40,7 @@ public class PutConsultation extends AsyncTask<String, Void, String> {
 
         String json = null;
         try {
-            json = new JSONObject().put("id",params[0]).put("dateTime",params[1]).put("cancelled",params[2]).toString();
+            json = new JSONObject().put("id",params[0]).put("dateTime",params[1]).put("cancelled",params[2]).put("address",params[3]).toString();
             System.out.println(json);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -71,14 +71,14 @@ public class PutConsultation extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String message) {
     }
 
-    public void editDateConsultation(int id, String date, boolean cancelled) {
+    public void editDateConsultation(int id, String date, boolean cancelled, String address) {
         final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
         final SimpleDateFormat output = new SimpleDateFormat("HH:mm dd-MM-yyyy");
 
         try {
             Date d = output.parse(date);
             String dateToPut = sdf.format(d);
-            System.out.println(execute(String.valueOf(id),dateToPut+"Z",String.valueOf(cancelled)).get());
+            System.out.println(execute(String.valueOf(id),dateToPut+"Z",String.valueOf(cancelled),address).get());
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

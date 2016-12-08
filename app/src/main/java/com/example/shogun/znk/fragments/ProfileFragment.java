@@ -66,6 +66,7 @@ public class ProfileFragment extends Fragment {
         etLogin.setText(String.valueOf(User.getInstance().getLogin()));
         etFirstName.setText(String.valueOf(User.getInstance().getFirstName()));
         etLastName.setText(String.valueOf(User.getInstance().getLastName()));
+        etConsultationLocalization.setText(String.valueOf(User.getInstance().getAddress()));
         if(User.getInstance().getAuthorities().contains("ROLE_STUDENT")){
             etConsultationLocalization.setVisibility(View.GONE);
             tvConsultationLocalization.setVisibility(View.GONE);
@@ -79,9 +80,10 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 PutUser putUser = new PutUser();
-                putUser.updateProfile(etFirstName.getText().toString(),etLastName.getText().toString());
+                putUser.updateProfile(etFirstName.getText().toString(),etLastName.getText().toString(),etConsultationLocalization.getText().toString());
                 User.getInstance().setFirstName(etFirstName.getText().toString());
                 User.getInstance().setLastName(etLastName.getText().toString());
+                User.getInstance().setAddress(etConsultationLocalization.getText().toString());
                 profileActivity.finish();
             }
         });

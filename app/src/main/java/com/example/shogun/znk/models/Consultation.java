@@ -12,7 +12,8 @@ public class Consultation {
     Boolean signed;
     Boolean cancelled;
     List<String> studentList;
-    private String teacher;
+    private String address;
+    private String teacherLogin;
 
     public String getDate() {
         return date;
@@ -54,12 +55,20 @@ public class Consultation {
         this.id = id;
     }
 
-    public String getTeacher() {
-        return teacher;
+    public String getAddress() {
+        return address;
     }
 
-    public void setTeacher(String teacher) {
-        this.teacher = teacher;
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getTeacherLogin() {
+        return teacherLogin;
+    }
+
+    public void setTeacherLogin(String teacherLogin) {
+        this.teacherLogin = teacherLogin;
     }
 
     public Consultation(String date, Boolean signed) {
@@ -75,11 +84,12 @@ public class Consultation {
         this.studentList = studentList;
     }
 
-    public Consultation(int consultationId, String formattedTime, Boolean cancelled, List<String> registeredStudents, String teacherLogin) {
+    public Consultation(int consultationId, String formattedTime, Boolean cancelled, List<String> registeredStudents, String teacherLogin, String address) {
         this.id = consultationId;
         this.date = formattedTime;
         this.cancelled = cancelled;
         this.studentList = registeredStudents;
-        this.teacher = teacherLogin;
+        this.address = address;
+        this.teacherLogin = teacherLogin;
     }
 }

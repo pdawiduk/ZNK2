@@ -47,7 +47,7 @@ public class PutUser extends AsyncTask<String, Void, String> {
         try {
             json = new JSONObject().put("id",User.getInstance().getId()).put("firstName",params[0]).put("lastName",params[1])
                     .put("email",User.getInstance().getEmail()).put("langKey","en").put("login",User.getInstance().getLogin())
-                    .put("activated",User.getInstance().getActivated()).put("authorities", jsonArray).toString();
+                    .put("activated",User.getInstance().getActivated()).put("authorities", jsonArray).put("address",params[2]).toString();
             System.out.println(json);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -78,9 +78,9 @@ public class PutUser extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String message) {
     }
 
-    public void updateProfile(String firstName, String lastName) {
+    public void updateProfile(String firstName, String lastName, String address) {
         try {
-            System.out.println(execute(firstName,lastName).get());
+            System.out.println(execute(firstName,lastName, address).get());
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

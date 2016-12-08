@@ -4,6 +4,7 @@ package com.example.shogun.znk.fragments;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import com.example.shogun.znk.TeacherActivity;
 import com.example.shogun.znk.models.User;
 import com.example.shogun.znk.requests.GetAccount;
 import com.example.shogun.znk.requests.LoginUser;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,6 +28,8 @@ import java.util.concurrent.ExecutionException;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static com.google.android.gms.internal.zzs.TAG;
 
 
 public class LoginFragment extends Fragment {
@@ -78,6 +82,12 @@ public class LoginFragment extends Fragment {
 
         LoginUser loginUser = new LoginUser(getContext());
         String token = loginUser.signUpUser(mail,password,String.valueOf(false));
+
+        //Getting registration token
+        String refreshedToken = FirebaseInstanceId.getInstance().getToken();
+
+        //Displaying token on logcat
+        Log.d(TAG, "Refreshed token: " + refreshedToken);
 
         GetAccount getAccount = new GetAccount();
         User user = getAccount.getUser(token);

@@ -79,6 +79,7 @@ public class GetAccount extends AsyncTask<String, Void, String> {
             user.setEmail(userJSON.getString("email"));
             user.setActivated(userJSON.getBoolean("activated"));
             user.setLangKey(userJSON.getString("langKey"));
+            user.setAddress(userJSON.optString("address"));
             user.setToken(token);
             JSONArray jsonArray = userJSON.getJSONArray("authorities");
             Set<String> authoritySet = new HashSet<>();

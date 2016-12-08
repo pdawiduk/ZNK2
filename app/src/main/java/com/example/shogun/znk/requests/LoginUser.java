@@ -4,6 +4,8 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
+import com.google.firebase.iid.FirebaseInstanceId;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -40,7 +42,8 @@ public class LoginUser extends AsyncTask<String, Void, String> {
 
         String json = null;
         try {
-            json = new JSONObject().put("username",params[0]).put("password",params[1]).put("rememberMe",params[2]).toString();
+            json = new JSONObject().put("username",params[0]).put("password",params[1]).put("rememberMe",params[2])
+                    .put("firebaseToken", FirebaseInstanceId.getInstance().getToken()).toString();
             System.out.println(json);
         } catch (JSONException e) {
             e.printStackTrace();

@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
+import android.widget.EditText;
 import android.widget.TimePicker;
 
 import com.example.shogun.znk.R;
@@ -36,6 +37,8 @@ public class ModifyConsultationDateFragment extends Fragment {
     TimePicker tpTime;
     @BindView(R.id.cvCalendar)
     CalendarView cvCalendar;
+    @BindView(R.id.etConsultationLocalization)
+    EditText etConsultationLocalization;
 
     @BindView(R.id.rvSignedStudents)
     RecyclerView rvSignedStudents;
@@ -109,7 +112,7 @@ public class ModifyConsultationDateFragment extends Fragment {
         synchronized (TeacherConsultationsFragment.consultations) {
             PutConsultation putConsultation = new PutConsultation();
 
-            putConsultation.editDateConsultation(id, time + " " + date, cancelled);
+            putConsultation.editDateConsultation(id, time + " " + date, cancelled, etConsultationLocalization.getText().toString());
             TeacherConsultationsFragment.consultations.notify();
             TeacherConsultationsFragment.getAdapter().notifyDataSetChanged();
             switchContent(TeacherConsultationsFragment.newInstance());

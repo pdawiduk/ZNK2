@@ -49,7 +49,7 @@ public class PostConsultation extends AsyncTask<String, Void, String> {
                         .addHeader("Authorization", "Bearer " + User.getInstance().getToken())
                         .build();
             } else {
-                json = new JSONObject().put("dateTime", params[0]).put("teacherId", User.getInstance().getId()).put("cancelled", params[1]).toString();
+                json = new JSONObject().put("dateTime", params[0]).put("teacherId", User.getInstance().getId()).put("cancelled", params[1]).put("address",params[2]).toString();
                 RequestBody body = RequestBody.create(JSON, json);
                 request = new Request.Builder()
                         .url(URL + "/api/consultations")
@@ -82,13 +82,13 @@ public class PostConsultation extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String message) {
     }
 
-    public void addConsultation(String date) {
+    public void addConsultation(String date, String address) {
         final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         final SimpleDateFormat output = new SimpleDateFormat("HH:mm:ss dd-MM-yyyy");
         try {
             Date d = output.parse(date);
             String dateToPut = sdf.format(d);
-            System.out.println(execute(dateToPut+".000Z", String.valueOf(false)).get());
+            System.out.println(execute(dateToPut+".000Z", String.valueOf(false),address).get());
         } catch (ParseException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {

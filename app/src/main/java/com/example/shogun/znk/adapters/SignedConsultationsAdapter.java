@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.shogun.znk.R;
-import com.example.shogun.znk.fragments.SelectedTeacherConsultationsFragment;
 import com.example.shogun.znk.fragments.SignedConsultationsFragment;
 import com.example.shogun.znk.models.Consultation;
 import com.example.shogun.znk.models.User;
@@ -36,7 +35,11 @@ public class SignedConsultationsAdapter extends RecyclerView.Adapter<SignedConsu
     private long id;
 
     public SignedConsultationsAdapter(List<Consultation> consultations, long id) {
-        this.consultations = consultations;
+        for (Consultation consultation : consultations) {
+            if (!consultation.getCancelled()) {
+                this.consultations.add(consultation);
+            }
+        }
         this.id = id;
     }
 
@@ -53,7 +56,7 @@ public class SignedConsultationsAdapter extends RecyclerView.Adapter<SignedConsu
 
     @Override
     public void onBindViewHolder(SignedConsultationsAdapter.SignedConsultationsHolder holder, int position) {
-        holder.tvDate.setText(consultations.get(position).getDate() + "\n" + consultations.get(position).getTeacher());
+        holder.tvDate.setText(consultations.get(position).getDate() + "\n" + consultations.get(position).getAddress() + "\n" + consultations.get(position).getTeacherLogin());
         holder.btnBookConsultation.setText("Zapisz");
         for (String login : consultations.get(position).getStudentList()) {
             if (login.equals(User.getInstance().getLogin())) {

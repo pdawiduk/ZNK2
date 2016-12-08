@@ -46,7 +46,7 @@ public class ConsultationsAdapter extends RecyclerView.Adapter<ConsultationsAdap
     @Override
     public void onBindViewHolder(ConsultationHolder holder, int position) {
 
-       holder.textView.setText( dateLists.get(position).getDate());
+       holder.textView.setText( dateLists.get(position).getDate() + "\n" + dateLists.get(position).getAddress());
     }
 
     class ConsultationHolder extends RecyclerView.ViewHolder{

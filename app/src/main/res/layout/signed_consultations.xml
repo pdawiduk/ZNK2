@@ -13,7 +13,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-
+        android:layout_marginTop="30dp"
         android:layout_marginLeft="32dp"
         android:textAlignment="center"
         tools:text = "23 11 2016"/>
@@ -25,6 +25,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="30dp"
         android:layout_marginRight="32dp"
         android:textColor="@android:color/white"
         android:background="@color/colorTulRed"/>

@@ -44,7 +44,11 @@ public class SelectedTeacherConsultationAdapter extends RecyclerView.Adapter<Sel
     private long id;
 
     public SelectedTeacherConsultationAdapter(List<Consultation> consultations,long id) {
-        this.consultations = consultations;
+        for (Consultation consultation : consultations) {
+            if (!consultation.getCancelled()) {
+                this.consultations.add(consultation);
+            }
+        }
         this.id = id;
     }
 
@@ -61,7 +65,7 @@ public class SelectedTeacherConsultationAdapter extends RecyclerView.Adapter<Sel
 
     @Override
     public void onBindViewHolder(TeacherConsultationHolder holder, int position) {
-        holder.tvDate.setText(consultations.get(position).getDate());
+        holder.tvDate.setText(consultations.get(position).getDate() + "\n" + consultations.get(position).getAddress());
         holder.btnBookConsultation.setText("Zapisz");
             for (String login : consultations.get(position).getStudentList()){
                 if(login.equals(User.getInstance().getLogin())){

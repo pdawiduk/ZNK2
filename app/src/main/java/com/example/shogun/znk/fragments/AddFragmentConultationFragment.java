@@ -41,7 +41,7 @@ public class AddFragmentConultationFragment extends Fragment {
     @BindView(R.id.cvCalendar)
     CalendarView cvCalendar;
     @BindView(R.id.etConsultationLocalization)
-    EditText consultationLocalization;
+    EditText etConsultationLocalization;
 
     private String date;
     private String time;
@@ -100,8 +100,8 @@ public class AddFragmentConultationFragment extends Fragment {
         synchronized (TeacherConsultationsFragment.consultations) {
             PostConsultation postConsultation = new PostConsultation();
 
-            postConsultation.addConsultation(time + ":00 " + date);
-            Log.d(TAG, "addConsultation: date "+ date + " time "+time);
+            postConsultation.addConsultation(time + ":00 " + date, etConsultationLocalization.getText().toString());
+            Log.d(TAG, "addConsultation: date "+ date + " time "+time + " address " + etConsultationLocalization.getText().toString());
             TeacherConsultationsFragment.consultations.notify();
             TeacherConsultationsFragment.getAdapter().notifyDataSetChanged();
             switchContent(TeacherConsultationsFragment.newInstance());
