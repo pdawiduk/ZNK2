@@ -92,10 +92,10 @@ public class LoginFragment extends Fragment {
         GetAccount getAccount = new GetAccount();
         User user = getAccount.getUser(token);
 
-        if((user.getAuthorities().contains("ROLE_ADMIN") && user.getAuthorities().contains("ROLE_USER")) || user.getAuthorities().contains("ROLE_TEACHER")) {
+        if(user.getAuthorities().contains("ROLE_TEACHER") && token != null) {
             Intent intent = new Intent(getActivity(), TeacherActivity.class);
             startActivity(intent);
-        } else if (user.getAuthorities().contains("ROLE_USER") || user.getAuthorities().contains("ROLE_STUDENT"))  {
+        } else if (user.getAuthorities().contains("ROLE_STUDENT") && token != null)  {
             Intent intent = new Intent(getActivity(), StudentActivity.class);
             startActivity(intent);
         }
