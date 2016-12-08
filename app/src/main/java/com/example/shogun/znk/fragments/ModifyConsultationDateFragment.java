@@ -93,6 +93,8 @@ public class ModifyConsultationDateFragment extends Fragment {
 
             }
         });
+
+        etConsultationLocalization.setText(User.getInstance().getAddress());
         return view;
     }
 
