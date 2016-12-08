@@ -87,7 +87,7 @@ public class GetTeachers extends AsyncTask<String, Void, String> {
                 String lastName = jsonObject.getString("lastName");
 
 
-                teachers.add(new Teacher(login, teacherId));
+                teachers.add(new Teacher(login, teacherId, firstName, lastName));
             } catch (JSONException e) {
                 e.printStackTrace();
 

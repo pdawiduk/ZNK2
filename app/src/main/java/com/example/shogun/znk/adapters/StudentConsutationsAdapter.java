@@ -47,7 +47,7 @@ public class StudentConsutationsAdapter extends RecyclerView.Adapter<StudentCons
     @Override
     public void onBindViewHolder(ConsultationHolder holder, int position) {
 
-       holder.textView.setText( teacherList.get(position).getLogin());
+       holder.textView.setText( teacherList.get(position).getFirstName() + " " + teacherList.get(position).getLastName());
     }
 
     class ConsultationHolder extends RecyclerView.ViewHolder{

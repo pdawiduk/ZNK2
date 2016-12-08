@@ -14,9 +14,11 @@ public class Teacher {
     private String lastName;
 
 
-    public Teacher(String login, long id) {
+    public Teacher(String login, long id, String firstName, String lastName) {
         this.login = login;
         this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     public String getLogin() {

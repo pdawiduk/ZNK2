@@ -99,6 +99,7 @@ public class GetStudentSignedConsultations extends AsyncTask<String, Void, Strin
                 Date d = sdf.parse(dateTime);
                 String formattedTime = output.format(d);
                 String teacherLogin = jsonObject.getString("teacherLogin");
+                String teacherName = jsonObject.getString("teacherName");
                 Boolean cancelled = jsonObject.getBoolean("cancelled");
                 String address = jsonObject.getString("address");
                 JSONArray jsonArray = jsonObject.getJSONArray("registeredStudents");
@@ -108,7 +109,7 @@ public class GetStudentSignedConsultations extends AsyncTask<String, Void, Strin
                     registeredStudents.add(student.getString("login"));
                 }
 
-                consultations.add(new Consultation(consultationId, formattedTime, cancelled, registeredStudents,teacherLogin,address));
+                consultations.add(new Consultation(consultationId, formattedTime, cancelled, registeredStudents,teacherName,address));
             } catch (JSONException e) {
                 e.printStackTrace();
             } catch (ParseException e) {
