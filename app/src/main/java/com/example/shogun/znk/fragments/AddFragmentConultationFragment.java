@@ -21,6 +21,7 @@ import com.example.shogun.znk.models.Consultation;
 import com.example.shogun.znk.models.User;
 import com.example.shogun.znk.requests.PostConsultation;
 
+import java.util.Calendar;
 import java.util.List;
 
 import butterknife.BindView;
@@ -72,6 +73,7 @@ public class AddFragmentConultationFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_add_fragment_conultation, container, false);
         ButterKnife.bind(this, view);
+        cvCalendar.setDate(System.currentTimeMillis(),false,true);
         cvCalendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(CalendarView calendarView, int i, int i1, int i2) {
@@ -79,11 +81,13 @@ public class AddFragmentConultationFragment extends Fragment {
 
             }
         });
+        tpTime.setHour(Calendar.getInstance().get(Calendar.HOUR_OF_DAY));
+        tpTime.setMinute(Calendar.getInstance().get(Calendar.MINUTE));
         tpTime.setIs24HourView(true);
         tpTime.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
             @Override
             public void onTimeChanged(TimePicker timePicker, int i, int i1) {
-                time = i-1 + ":" + i1;
+                time = i + ":" + i1;
 
             }
         });

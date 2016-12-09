@@ -89,7 +89,7 @@ public class ModifyConsultationDateFragment extends Fragment {
         tpTime.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
             @Override
             public void onTimeChanged(TimePicker timePicker, int i, int i1) {
-                time = i-1 + ":" + i1;
+                time = i + ":" + i1;
 
             }
         });
