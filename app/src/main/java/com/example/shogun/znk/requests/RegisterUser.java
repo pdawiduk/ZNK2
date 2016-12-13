@@ -42,7 +42,7 @@ public class RegisterUser extends AsyncTask<String, Void, String> {
 
         String json = null;
         try {
-            json = new JSONObject().put("login",params[0]).put("password",params[1]).put("email",params[2]).toString();
+            json = new JSONObject().put("login",params[0]).put("password",params[1]).put("email",params[2]).put("langKey","en").toString();
             System.out.println(json);
         } catch (JSONException e) {
             e.printStackTrace();
